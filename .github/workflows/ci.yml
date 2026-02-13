@@ -13,3 +13,8 @@ jobs:
         distribution: 'temurin'
         cache:  maven
     - run: mvn clean package
+    - name: Build Docker image
+      run: docker build -t hello-maven:${{ github.sha }} .
+
+    - name: List Docker images
+      run: docker images | grep hello-maven
