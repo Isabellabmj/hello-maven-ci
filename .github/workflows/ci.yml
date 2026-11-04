@@ -65,3 +65,18 @@ jobs:
           docker push ghcr.io/isabellabmj/hello-maven:latest
           docker push ghcr.io/isabellabmj/hello-maven:${{ github.sha }}
 
+
+  # deploy:
+  #   needs: build-and-push
+  #   runs-on: self-hosted
+  #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+  #   steps:
+  #     - name: Deploy to VM via SSH
+  #       run: |
+  #         ssh bruger@192.168.1.50 '
+  #           set -e
+  #           docker pull ghcr.io/isabellabmj/hello-maven:latest
+  #           docker rm -f hello-maven || true
+  #           docker run -d --name hello-maven -p 8080:8080 ghcr.io/isabellabmj/hello-maven:latest
+  #         '
